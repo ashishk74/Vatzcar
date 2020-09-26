@@ -33,9 +33,11 @@ contract Asset {
   AssetDetail[] listofOwners;     // aray of asset details.
   //listofOwners[assetNo].ownerNo => No of owners that this asset has had
   
-  uint256 assetNo = 0;
+  uint256 assetNo;
   uint8 ownerNo = 1;    // Initialized with 1 to sound similar to 'first owner'
   
+event NewAssetNo(string _message, uint256 _assetno);
+
   function createAsset(string memory _name,
                         address _addr,
                         string memory _otherDetails,
@@ -60,6 +62,7 @@ contract Asset {
     //owners[ownerNo][assetNo] ;
     assetNo ++;
     
+    emit NewAssetNo("Your new Asset no. is " , assetNo-1);
     return (assetNo-1);
     
   }
